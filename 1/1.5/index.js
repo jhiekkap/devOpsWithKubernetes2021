@@ -7,7 +7,6 @@ const app = express();
 app.use(cors());
 const server = http.createServer(app);
 
-
 app.get('/', (_req, res) => {
     res.send('<h1>Hello world</h1>');
 });

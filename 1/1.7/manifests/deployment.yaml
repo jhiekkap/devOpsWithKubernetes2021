@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: todo-app
+  name: mainapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: todo
+      app: mainapp
   template:
     metadata:
       labels:
-        app: todo
+        app: mainapp
     spec:
       containers:
-        - name: todo
-          image: jhiekkap/todo:v1
+        - name: mainapp
+          image: jhiekkap/mainapp:v1
