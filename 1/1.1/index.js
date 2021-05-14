@@ -1,4 +1,4 @@
-function generateRandomNumber(numberOfCharacters) {
+function generateRandomString(numberOfCharacters) {
    var randomValues = '';
    var stringValues = 'ABCDEFGHIJKLMNOabcdefghijklmnopqrstuvwxyzPQRSTUVWXYZ';
    var sizeOfCharacter = stringValues.length;
@@ -9,7 +9,7 @@ function generateRandomNumber(numberOfCharacters) {
 };
 
 setInterval(() => {
-   const randomString = generateRandomNumber(40);
+   const randomString = generateRandomString(40);
    const timeStamp = new Date();
    console.log(timeStamp + ': ' + randomString);
 }, 5000);

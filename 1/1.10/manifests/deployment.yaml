@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timehash
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: timehash
+  template:
+    metadata:
+      labels:
+        app: timehash
+    spec:
+      volumes: # Define volume
+        - name: shared-timehash 
+          emptyDir: {}
+      containers:
+        - name: hash-generator
+          image: jhiekkap/hashgen:latest
+          volumeMounts: # Mount volume
+          - name: shared-timehash
+            mountPath: /mydir/files
+        - name: hash-reader
+          image: jhiekkap/readprint:latest
+          volumeMounts: # Mount volume
+          - name: shared-timehash
+            mountPath: /mydir/files
