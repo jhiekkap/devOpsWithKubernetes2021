@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo
+  template:
+    metadata:
+      labels:
+        app: todo
+    spec:
+      volumes:
+        - name: shared-todo
+          persistentVolumeClaim:
+            claimName: todo-claim
+      containers:
+        - name: todo
+          image: jhiekkap/todo:v4
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: shared-todo
+              mountPath: /mydir/public/images
