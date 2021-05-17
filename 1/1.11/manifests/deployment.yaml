@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: main-pingpong
+  name: main-pingpong-dep
 spec:
   replicas: 1
   selector:
@@ -17,41 +17,15 @@ spec:
           persistentVolumeClaim:
               claimName: pingpong-claim
       containers:
-          - name: mainapp
-            image: jhiekkap/mainapp:v2
-            volumeMounts:
-              - name: shared-pingpong
-                mountPath: /mydir/files
-          - name: pingpong
-            image: jhiekkap/pingpong:v2
-            volumeMounts:
-               - name: shared-pingpong
-                 mountPath: /mydir/files
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: timehash
-# spec:
-#   replicas: 1
-#   selector:
-#     matchLabels:
-#       app: timehash
-#   template:
-#     metadata:
-#       labels:
-#         app: timehash
-#     spec:
-#       volumes: # Define volume
-#         - name: shared-timehash
-#           emptyDir: {}
-#       containers:
-#         - name: hash-generator
-#           image: jhiekkap/hashgen:latest
-#           volumeMounts: # Mount volume
-#             - name: shared-timehash
-#               mountPath: /mydir/files
-#         - name: hash-reader
-#           image: jhiekkap/readprint:latest
-#           volumeMounts: # Mount volume
-#             - name: shared-timehash
-#               mountPath: /mydir/files
+        - name: mainapp
+          image: jhiekkap/mainapp:v2
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: shared-pingpong
+              mountPath: /mydir/files
+        - name: pingpong
+          image: jhiekkap/pingpong:v2
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: shared-pingpong
+              mountPath: /mydir/files

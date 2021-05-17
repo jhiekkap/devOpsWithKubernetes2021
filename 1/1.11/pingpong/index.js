@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path')
 const fs = require('fs');
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3001;
 const app = express();
 app.use(cors());
 
@@ -16,7 +16,17 @@ const filePath = path.join(directory, 'pingpongs.txt')
 
 let counter = 0;
 
-app.get('/', (_req, res) => {
+// app.get('/', (_req, res) => {
+//    const text = `Ping / Pongs: ${counter}`;
+//    fs.writeFile(filePath, text, (err) => {
+//       if (err) throw err;
+//       console.log('Saved!');
+//     });
+//    res.send(`<div>pong ${counter}</div>`);
+//    counter++;
+// });
+
+app.get('/pingpong', (_req, res) => {
    const text = `Ping / Pongs: ${counter}`;
    fs.writeFile(filePath, text, (err) => {
       if (err) throw err;
@@ -25,6 +35,7 @@ app.get('/', (_req, res) => {
    res.send(`<div>pong ${counter}</div>`);
    counter++;
 });
+
 
 const start = async () => {
    await new Promise(res => fs.mkdir(directory, (err) => {

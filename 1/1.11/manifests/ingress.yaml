@@ -2,17 +2,15 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: mainapp-pingpong-ingress
-  annotations:
-    traefik.ingress.kubernetes.io/rule-type: "PathPrefixStrip"
 spec:
   rules:
-  - http:
-      paths:
-      - path: /
-        backend:
-          serviceName: mainapp-svc
-          servicePort: 2345
-      - path: /pingpong
-        backend:
-          serviceName: pingpong-svc
-          servicePort: 2345
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: mainapp-svc
+              servicePort: 2345
+          - path: /pingpong
+            backend:
+              serviceName: pingpong-svc
+              servicePort: 2346

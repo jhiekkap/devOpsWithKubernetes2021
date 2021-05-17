@@ -5,8 +5,8 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: pingpong
+    app: main-pingpong
   ports:
-    - port: 2345
+    - port: 2346
       protocol: TCP
-      targetPort: 8080
+      targetPort: 3001
