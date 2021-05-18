@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: mp
+  name: main-pingpong-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: main-pingpong
+  template:
+    metadata:
+      labels:
+        app: main-pingpong
+    spec: 
+      containers:
+        - name: mainapp
+          image: jhiekkap/mainapp:v3
+          imagePullPolicy: Always 
+        - name: pingpong
+          image: jhiekkap/pingpong:v4
+          imagePullPolicy: Always 
