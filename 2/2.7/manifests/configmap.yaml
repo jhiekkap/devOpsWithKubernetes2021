@@ -2,6 +2,7 @@
 # kind: ConfigMap
 # metadata:
 #   name: postgres-config
+#   namespace: mp
 # data:
 #   # property-like keys; each key maps to a simple value
 #   postgres_password: secretpassword
