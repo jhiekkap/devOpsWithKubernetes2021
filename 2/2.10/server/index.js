@@ -85,7 +85,7 @@ app.get('/todos', async (_req, res) => {
 
 app.post('/todos', async (req, res, next) => {
     console.log('POST /todos req.body', req.body);
-    const { todo: newTodo } = req.body;
+    const { newTodo } = req.body;
     console.log('NEW TODO', newTodo);
     try {
         if (newTodo.length > 140) {
