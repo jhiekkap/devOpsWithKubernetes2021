@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: main-pingpong-dep
+  namespace: mp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: main-pingpong
+  template:
+    metadata:
+      labels:
+        app: main-pingpong
+    spec:
+      containers:
+        # - name: mainapp
+        #   image: jhiekkap/mainapp:v4
+        #   imagePullPolicy: Always
+        #   env:
+        #     - name: MESSAGE # Notice that the case is different here from the key name in the ConfigMap.
+        #       valueFrom:
+        #         configMapKeyRef:
+        #           name: mainapp-config # The ConfigMap this value comes from.
+        #           key: message # The key to fetch.
+        - name: pingpong
+          image: jhiekkap/pingpong:v5
+          imagePullPolicy: Always
+          env:
+            - name: NODE_ENV
+              value: production
